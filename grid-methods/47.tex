@@ -4,6 +4,28 @@
 
 \section{Вид конечно-разностной схемы при численном решении краевой задачи для одномерного стационарного уравнения теплопроводности с переменным коэффициентом теплопроводности}
 
+Рассмотрим стационарное уравнение теплопроводности:
+
+\begin{gather}
+	\begin{cases}
+		-\frac{d}{d\tau}(k(\tau)\frac{du}{d\tau})+v(\tau)\frac{du}{d\tau}=0, \tau \in (a;b); \\
+		u(0)=u_{a}, u(b)=u_{b}.
+	\end{cases}
+\end{gather}
+
+где $k(\tau)>k_{0}>0 \  q(\tau) \geq 0.$
+
+Конечно-разностная схема для данной задачи:
+\begin{gather}
+	\begin{cases}
+		^>u_{\cdot}=[u_{\cdot}, u_{1},...,u_{n}>\in ^>\mathbf{R}^{|A|}(A)\\
+		u_{0}=u_{a},\\
+		-\frac{1}{h}(k_{i+\frac{1}{2}}\frac{u_{i+1}-u_{i}}{h}-k_{i-\frac{1}{2}}\frac{u_{i}-u_{i-1}}{h})+v_{i}\frac{u_{i+1}-u_{i-1}}{2h}=0, \ i=1,...,k-1,\\
+		u_{k}=u_{b}.
+	\end{cases}
+\end{gather}
+где $\tau_{i-\frac{1}{2}}=\frac{\tau_{i-1}+\tau_{i-1}}{2}, k_{i-\frac{1}{2}}=k(\tau_{i-\frac{1}{2}}),\tau_{i+\frac{1}{2}}=\frac{\tau_{i+1}+\tau_{i}}{2}, k_{i+\frac{1}{2}}=k(\tau_{i+\frac{1}{2}})$ для i=1..k-1. 
+
 
 
 \end{document}
