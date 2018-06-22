@@ -1,8 +1,10 @@
-## exam2018
+﻿## exam2018
 
 ### [Распределение](https://docs.google.com/spreadsheets/d/1Uy2CdpQa8T8ZlyrKkIqkIIJid86yy8VKQaKC7fEKXVg/edit?usp=sharing)
 
 ### [Содержание](CONTENTS.md)
+
+### [Лекции Димы](https://www.dropbox.com/s/6gdb50yms0giv45/%D0%A1%D0%BA%D0%B0%D0%BD%2015%20%D0%B8%D1%8E%D0%BD%D1%8F%202018%20%D0%B3.%2C%2016.15.pdf?dl=0)
 
 ### Литература
 

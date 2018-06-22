@@ -4,6 +4,99 @@
 
 \section{Принцип максимума и теорема сравнения для конечно разностного аналога краевой задачи одномерного стационарного уравнения теплопроводности с постоянным коэффициентом теплопроводности}
 
+Билет очень похож на билеты 15 и 16, поэтому я его оттуда и скатаю.
 
+АХТУНГ!!! Так как билеты 12-16 - одна лекция, то могу встречаться ссылки на другие билеты.
 
+\paragraph{Предисловие}
+
+Рассмотрим краевую задачу:
+
+\begin{equation}
+\begin{cases}
+-U''\left(\tau\right)+q\left(\tau\right) U \left(\tau\right) = f\ left( \tau \right), \ \tau \in [a;b] \\
+U\left(a\right) = U_a \in \mathbb{R}, \ U\left(b\right) = U_b \in \mathbb{R}
+\end{cases}
+\end{equation}
+
+где $q \geq 0$ на $[a;b]$.
+
+\paragraph{Принцип максимума}
+
+Пусть решение  ${}^> U_{\left(k\right)} = [ U_0, U_1, ..., U_k \rangle$ СЛАУ: $F_{\left(k\right)} \cdot {}^> U_{\left(k\right)} = {}^> \nu_{\left(k\right)}$ - таково, что ${}^> \nu_{\left(k\right)} \leq {}^> O_{\left(k+1\right)}$, т.е. $\nu_j \leq 0$ для $\forall j = \overline{0,k}$. Тогда ${}^>U_{\left(k\right)} \leq {}^> O_{\left(k+1\right)}$.
+\paragraph{Доказательство} (от противного)
+
+Предположим, что $M = max \{U_i: i = \overline{1,k-1}\}=U_j > 0$, где $j$ - максимальный индекс среди индексов от 1 до k-1, для которого $U_j = M$. Тогда $U_{j-1} \leq U_j$ и $U_{j+1} \leq U_j$.
+
+Поскольку $a_i \leq 0$ и $c_i < 0$ (см. билет 12(5)), то
+
+\begin{equation}\label{45.1}
+\begin{cases}
+a_{j-1} U_{j-1} \leq a_j U_j, \ \ c_{j+1} U_{j+1} > c_j U_j \\
+\text{Но согласно билету 12(5)} a_i+b_i+c_i \geq 0, i = \overline{1,k-1}
+\end{cases}
+\end{equation}
+
+Тогда из схемы $F_{\left(k\right)} \cdot {}^>U_{\left(k\right)} = {}^>\nu_{\left(k\right)}$ для $i=j$ получаем ($\nu_j = f_j \leq 0$ из условия):
+
+$$
+0 \geq f_j = a_{j-1} U_{j-1} + b_j U_j + c_{j+1} U_{j+1} > a_j U_j + b_j U_j + c_j U_j = \left(a_j + b_j + c_j\right) U_j \geq 0
+$$
+
+Получается, что $0>0$ - противоречие $\Rightarrow {}^> U_\left(k\right) \leq {}^> O_{\left(k+1\right)}$, где ${}^> O_{\left(k+1\right)} = [0,...,0 \rangle \in {}^> \mathbb{R}^{\left|A_k\right|}\left(A_k\right)$. $ \ \ \#$
+
+\paragraph{Теорема сравнения}
+
+Рассмотрим СЛАУ:
+
+\begin{equation} \label{45.2}
+F_{\left(k\right)} \cdot {}^> U_{\left(k\right)} = {}^> \nu_{\left(k\right)}
+\end{equation}
+
+и соотношения
+
+\begin{equation} \label{45.3}
+\begin{cases}
+a_i < 0, b_i > 0, c_i < 0, i = \overline{1,k-1} \\
+a_j+b_j+c_j \geq 0, j =\overline{0,k}.
+\end{cases}
+\end{equation}
+
+Пусть кроме СЛАУ \ref{45.2}, где матрица $F_{\left(k\right)}$ удовлетворяет условиям \ref{45.3}, рассматриваеется ещё одна СЛАУ:
+
+\begin{equation}\label{45.4}
+F_{\left(k\right)} \cdot {}^> x_{\left(k\right)} = {}^> y_{\left(k\right)}.
+\end{equation}
+
+Для решения ${}^> x_{\left(k\right)} = [x_0, x_1, ..., x_k\rangle \in {}^> \mathbb{R}^{\left|A_k\right|} \left(A_k\right)$ СЛАУ \ref{45.4} и решения СЛАУ \ref{45.2} выписываются условия:
+
+\begin{equation}\label{45.5}
+\left| \left(F_{\left(k\right)} \cdot {}^> U_{\left(k\right)}\right)_i \right| = \left|\nu_i\right| \leq \left(F_{\left(k\right)} \cdot {}^> x_{\left(k\right)}\right)_i = y_i, \ i = \overline{0,k}.
+\end{equation}
+
+Тогда $\left|U_i\right| \leq x_i$ для $i = \overline{0,k}$, где ${}^> U_{\left(k\right)} = [ U_0, U_1, ..., U_k \rangle$.
+
+\paragraph{Доказательство}
+
+Рассмотрим сеточную функцию ${}^> z_{\left(k\right)} = - {}^> \nu_{\left(k\right)} - {}^> y_{\left(k\right)}$. Тогда, согласно \ref{45.5}: $- {}^>\nu_{\left(k\right)} - {}^> y_{\left(k\right)}\leq O_{\left(k+1\right)}$. 
+
+Следовательно, из принципа макисмума получаем:
+
+\begin{equation} \label{45.6}
+- {}^> U_{\left(k\right)} - {}^> x_{\left(k\right)} \leq {}^> O_{\left(k+1\right)} \Leftrightarrow - U_i \leq x_i, \ i = \overline{0,k}.
+\end{equation}
+
+Рассмотрим сеточную функцию:
+
+$$
+{}^> \mu_{\left(k\right)} = - {}^> \nu_{\left(k\right)} + {}^> y_{\left(k\right)} \leq {}^> O_{\left(k+1\right)}.
+$$
+
+Тогда из принципа максимума следует:
+
+\begin{equation}\label{45.7}
+- {}^> x_{\left(k\right)} + {}^> U_{\left(k\right)} \leq {}^> O_{\left(k+1\right)} \Leftrightarrow U_i \leq x_i, \ i= \overline{0,k}.
+\end{equation}
+
+Таким образом из \ref{45.6} и \ref{45.7} получаем: $\left|U_i\right| \leq x_i, \ i = \overline{0,k}$. $\ \ \#$
 \end{document}
