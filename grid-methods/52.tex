@@ -5,5 +5,54 @@
 \section{Аппроксимирование и устойчивость (принцип максимума) разностной схемы для численного решения задачи Дирихле с прямоугольной областью}
 
 
+Рассмотрим задачу Дирихле на квадрате $D=[0,1] \times[0,1]$:
 
-\end{document}
+\begin{gather}
+	\begin{cases}
+		\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=\varphi(x,y),  & (x,y)=D^0=(0,1)\times(0,1)\\
+		u(x,y)=\psi (x,y), & (x,y)=\text{Г}=\partial D
+	\end{cases}
+\end{gather}
+
+
+Для численного решения задачи рассморим равномерную сетку $D_n ={x_k,y_m}:k,m=0..M$, где $h=\frac{1}{M} $ - шаг, $D_n ^0$ - набор внутренних узлов сетки $D_n$, $\text{Г}_n$ -набор граничных узлов. Тогда $D_{n} = D_n^0 \cup \text{Г}_n$.
+
+Конечно-разностный аналог на сетке $D_n$ аппроксимирует задачу Дирихле со 2-м порядком аппроксимирования и имеет вид:
+
+\begin{gather}
+	\begin{cases}
+	\frac{u_{k-1,m}-2u_{k,m}+u_{k+1,m}}{h^2}+\frac{u_{k,m-1}-2u_{k,m}+u_{k,m+1}}{h^2}=\varphi _{k,m} & (x_k,y_m)\in D_n \\
+		u_{k,m}=\varphi _{k,m}, & (x_k,y_m)=\text{Г}_n
+	\end{cases}
+	\end{gather}
+
+
+Эта СЛАУ представлется в виде:
+\begin{gather}
+	L_n- _n\bar{u}= \_n\bar{f}\\
+	L_{n}\in L(\mathbb{R},D_n),\ _n\bar{u}=[u_{k,m}:(x,y)\in P_n>\\
+	_n\bar{f}_{km}=\begin{cases}
+		u_{k,m}, & (x_k,y_m)\in D_n^0\\
+		\psi_{k,m}, & (x_k,y_m)\in \text{Г}_n
+		\end{cases}
+\end{gather}
+
+Для доказательства устойчивости рассматриваемой разностной схемы  надо доказать  при любом $h=\frac{1}{M}\to 0$ СЛАУ имеет единственное решение и независимо от h $\exists$ такая c>0, что справедливо неравенство (Теорем Ланса):
+\begin{gather}
+	||_n\bar{u}|| \leq c||_n\bar{f}||
+\end{gather}
+
+
+$\textbf{Теорема о принципе максимума для конечного-разностного аналога задачи Дирихле}$\\
+Если $\Lambda_n(v_km)=0, (x_k,x_m)\in D_n^0$, то наибольшие и наименьшие значения $D_n$- сеточной функции  $_n\bar{v}\in \mathbb{R}^{|D_n|}(D_n)$ достигается в граничных узлах. \\
+$\textbf{Доказательство} $
+\begin{gather}
+	\begin{cases}
+		\Lambda_n{xx}(v_{k,m})=\frac{v_{k-1,m}-2v_{k,m}+v_{k+1,m}}{h^2}\\
+		\Lambda_n{yy}(v_{k,m})=\frac{v_{k,m-1}-2v_{k,m}+v_{k,m+1}}{h^2}\\
+		\Lambda_n(v_{km})=\Lambda_{xx}(v_{km})+\Lambda_{yy}(v_{km}) 
+				\end{cases}
+\end{gather}
+$\#$
+
+ \end{document}
