@@ -1,9 +1,47 @@
-\documentclass[__main__.tex]{subfiles}
+\include{preamble}
 
 \begin{document}
-
 \section{Многошаговые методы Адамса-Моултона для численного решения задачи Коши с нормальным ОДУ, метод Адамса-Моултона-Башфорда прогноза и коррекции}
 
+Пусть в узлах сетки $\tau_0,\tau_1,\dots,\tau_n$ методом Рунге-Кутта найдем приближенные значения $y_0,y_1,\dots,y_n$ решения задачи Коши и величины $f_0 = f(\tau_0,y_0), f_1 = f(\tau_1,y_1),\dots,f_n = f(\tau_n,y_n)$. Введем обозначение: $f_{n+1} = f(\tau_{n+1},y_{n+1})$, где $y_{n+1}$ - неизвестное приближенное значение решения задачи Коши в узле $\tau_{n+1}$. Для сетки $B_{n+1} = \langle \tau_0,\tau_1,\dots,\tau_{n+1}\rangle$ используют $B_{n+1}$ - сеточную функцию $[y_0,y_1,\dots,y_n,y_{n+1}\rangle$ для создания интерполяционного полинома Лагранжа $\mathcal{L}_{n+1}$. Далее функцию $f$ на отрезке $[\tau_n,\tau_{n+1}]$ приближают полиномом $\mathcal{L}_{n+1}$ и получают рабочую формулу для $n$-шагового метода Адамса-Моултона:
+\begin{gather*}
+	y_{n+1} = y_n+\int\limits_{\tau_n}^{\tau_n+h}f\left[\tau,y\left(\tau\right)\right]d\tau \approx y_n+\int\limits_{\tau_n}^{\tau_n+h}\mathcal{L}_{n+1}(\tau)d\tau = y_n+h\sum_{j=0}^{n+1}\beta_jf_{n+1-j} = y_n+h\beta_0f(\tau_{n+1},y_{n+1})+h\sum_{j=1}^{n+1}\beta_jf_{n+1-j}
+\end{gather*}
+где $f(\tau_{n+1},y_{n+1})$ - неизвестно, $c_n = \sum_{j=1}^{n+1}\beta_j f_{n+1-j}$ - известно, как и число $\beta_0 \in R$.
 
-
+В итоге  получаем уравнение
+\begin{gather*}
+	y_{n+1} = y_n+hc_n+h\beta_0 f(\tau_{n+1},y_{n+1})
+\end{gather*}
+Для приближенного вычисления $y_{n+1}$ методом простой итерации с соответсвующим выбором начального значения $y_{n+1}^{(0)}$ решают уравнение:
+\begin{gather*}
+	y = \psi(y) = y_n+hc_n+h\beta_0 f(\tau_{n+1},y)
+\end{gather*}
+Получая на $p$ - ом шаге метода простой итерации приближенного значения $y_{n+1}^{(p)}$ для $y_{n+1}$ получают рабочую формулу $n$ шагового метода Адамса-Моултона в виде:
+\begin{gather*}
+	y_{n+1} = y_n+h\sum_{j=1}^{n+1}\beta_j f_{n+1-j}+h\beta_0 f\left(\tau_{n+1},y_{n+1}^{(p)}\right)
+\end{gather*}
+\begin{itemize}
+	\item Одношаговый метод А-М будет иметь вид:
+		\begin{gather*}
+			y_{n+1} = y_n+h\left(\frac{1}{2}f_{n+1}+\frac{1}{2}f_n\right)
+		\end{gather*}
+	\item $m = 2$
+		\begin{gather*}
+			y_{n+1} = y_n+\frac{h}{12}\left(5f_{n+1}+8f_n-f_{n-1}\right)
+		\end{gather*}
+	\item $m = 3$
+		\begin{gather*}
+			y_{n+1} = y_n+\frac{h}{24}\left(9f_{n+1}+19f_n-5f_{n-1}+f_{n-2}\right)
+		\end{gather*}
+	\item $m=4$ (Прогноз)
+		\begin{gather*}
+			y_{n+1}^{(0)} = y_n+\frac{h}{24}\left(55f_n-59f_{n-1}+37f_{n-2}-9f_{n-1}\right)
+		\end{gather*}
+	\item $m =4$ (Коррекция)
+		\begin{gather*}
+			y_{n+1} = y_n+\frac{h}{24}\left(9f_{n+1}^{(0)}+19f_n-5f_{n-1}+f_{n-2}\right)
+		\end{gather*}
+		где $f_{n+1}^{(0)} = f(\tau_{n+1},y_{n+1}^{(0)})$
+\end{itemize}
 \end{document}
