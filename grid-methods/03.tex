@@ -4,6 +4,40 @@
 
 \section{Разности и основное свойство разделённых разностей}
 
+\subsection{Разности}
+
+Рассмотим гладкую функцию $f \in \underline{C^q}([a;b],\mathbb{R}))$ равномерную сетку $A = <a = \tau_0, \tau_1, \text{...}, \tau_k>$ шага $h = \frac{b-a}{k}$ и $A$ - сеточную функцию $\hat{A}(f) = [y_0, y_1, \text{...}, y_k> \in \mathbb{R}^{|A|}(A)$, где $f(\tau_i) = y_i$ для $i = \overline{0, k}$. Тогда определены разности:\\
+
+$\Delta y_0 = y_1 - y_0$, $\Delta y_1 = y_2 - y_1$, ..., $\Delta y_{k-1} = y_{k} - y_{k-1}$ - разности 1-го порядка\\
+
+$\Delta^2 y_0 = \Delta y_1 - \Delta y_0 = y_2 - 2y_1 + y_0$, ..., $\Delta y_{k-1} = \Delta y_{k} - \Delta y_{k-1} = y_k - 2y_{k-1} + y_{k-2}$ - разности 2-го порядка\\
+
+$\Delta^k = \Delta^{k-1} y_1 - \Delta^{k-1} y_0 = \sum_{i=0}^k (-1)^i e_k^i y_{k-i}$ - разность $k$-го порядка.\\
+
+Например:
+
+$$f'(\tau_i) = \frac{y_{i+1} - y_i}{h} = \frac{\Delta y_i}{h} \text{для} i = \overline{0, k-1}$$
+$$f''(\tau_i) = \frac{y_{i+1} - 2y_i + y_1}{h^2} = \frac{\Delta^2 y_i}{h^2}, i = \overline{1, k - 1}$$
+
+\subsection{Разделенные разности.}
+
+Если $t_0, t_1, \text{...}, t_k \in [a; b]$ - попарно различные точки $[a, b]$, то $A = <t_0, t_1, \text{...}, t_k>$ - квази-сетка на $[a; b]$.\\
+
+Пусть $f \in \underline{C}^{k+1}([a; b], \mathbb{R})$ и $A = <\tau_0, \tau_1, \text{...}, \tau_k>$ - квази-сетка на $[a; b]$. Тогда определены разделенные разности:
+
+\begin{itemize}
+\item[0)] $f(\tau_0)$ - разделенная разность 0-го порядка.
+\item[1)] $f(\tau_0, \tau_1) = \frac{f(\tau_1) - f(\tau_0)}{\tau_1 - \tau_0}$ - разделенная разность 1-го порядка.
+\item[2)] $f(\tau_0, \tau_1, \tau_2) = \frac{f(\tau_1, \tau_2) - f(\tau_0, tau_1)}{tau_2 - tau_0}$ - разделенная разность 2-го порядка
+\item[...]
+\item[3)] $f(\tau_0, \tau_1, \text{...}, \tau_k) = \frac{f(\tau_1, \tau_2, \text{...}, \tau_k) - f(\tau_0, \tau_1, \text{...}, \tau_{k-1})}{\tau_k - \tau_0}$ - разделенная разность $k$-го порядка.
+
+\textbf{Лемма} (о независимости разделенной разности от порядка переменных в ее аргументе)\\
+Пусть $A = <\tau_0, \tau_1, \text{...}, \tau_k>$ - квази-сетка на $[a;b]$. Тогда:
+
+$$f(\tau_0, \tau_1, \text{...}, \tau_k) = \sum_{i = 0}^k \frac{f(\tau_i)}{(\tau_i - \tau_0) \cdot \text{...} \cdot (\tau_i - \tau_{i - 1}) \cdot (\tau_i - \tau_{i+1}) \cdot \text{...} \cdot (\tau_i - \tau_k)}$$
+ 
+\end{itemize}
 
 
 \end{document}
