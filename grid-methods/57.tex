@@ -4,6 +4,44 @@
 
 \section{Метод Галёркина численного решения краевой задачи для одномерного стационарного уравнения теплопроводности}
 
+Приближённое решение ищется в виде:
 
+$$
+u^N \left(x\right) = \sum_{j = 0}^{N} \alpha_j \varphi_j \left(x\right).
+$$
 
+За приближённое решение принимается функция $u^N \in U^N$, которая удовлетворяет интегральному тождеству
+
+$$
+\int_{a}^{b} L \left[u^N\right] \varphi dx = \int_{a}^{b} f \varphi dx
+$$
+
+для любой пробной функции $\varphi = \varphi_i, \ i = \overline{1,N-1}$.
+
+Для задачи 
+
+\begin{equation}
+\begin{cases}
+l \left[u\right] = f, \ x \in [a;b] \\
+u\left( a \right)=u_a, \ u \left(b\right) = u_b
+\end{cases}
+\end{equation}
+
+метод Галёркина с использованием интегрального тождества
+
+$$
+\int_{a}^{b} \left(ku'\varphi'+\upsilon u' \varphi + q u \varphi\right) dx = \int_{a}^{b} f\varphi
+$$
+
+приводит к следующей системе уравнений:
+
+\begin{equation}
+\begin{cases}
+\int_{a}^{b} \left[k\left(\sum_{j=0}^{N}\alpha_j \varphi_j^{'}\right)\varphi_i^{'} + \upsilon \left(\sum_{j = 0}^N \alpha_j \varphi_j^{'}\right)\varphi_i + q \left(\sum_{j = 0}^N \alpha_j \varphi_j\right)\varphi_i\right]dx = \int_{a}^b f\varphi_i dx, \ i = \overline{1,N-1},\\ \alpha_0 = u_a, \ \alpha_N = u_b
+\end{cases}
+\end{equation}
+
+Системы сеточных уравнений, получаемые методом конечных разностей, обладают тем важным свойством, что матрицы коэффициентов этих систем являются разреженными.
+
+В общем случае применение метода Галёркина приводит к необходимости вычислять решения систем уравнений вида $A \alpha = d$ с заполненными матрциами $A$.
 \end{document}

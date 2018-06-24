@@ -4,6 +4,48 @@
 
 \section{Метод переменных направлений (дробных шагов) для численного решения двумерного параболического уравнения (две одномерные прогонки) в частных производных}
 
+Рассмотрим задачу:
+\begin{equation}
+	\label{51_1}
+	\begin{cases}
+		\frac{\partial u}{\partial t}-\frac{\partial^2u}{\partial x^2}-\frac{\partial^2u}{\partial y^2} = 0,\;\;\;(x,y,t)\in R_2\times (0,T)\\
+		u(x,y,0) = \mu(x,y),\;\;(x,y)\in R
+	\end{cases}
+\end{equation}
+\begin{itemize}
+	\item $C_1 = A\times B = \langle(x_k,y_m) = (kh_x,mh_y):(k,m)\in Z^2\rangle$ - равномерная сетка на $R_2$ шага $(h_x,h_y)$;
+	\item $C_2 = \langle 0 = t^0,t^1,\dots,t^n\rangle$ - равномерная сетка на $[0,T]$ шага $\tau = \frac{T}{N}$;
+	\item $C = C_1\times C_2$ - 3-х мерная равномерная сетка шага $(h_x,h_y,\tau)$;
+	\item $\underline{u} = \langle u_{km}^n:k,m\in Z, n = \overline{0,N}\rangle$ - $C$ - сеточная функция.
+\end{itemize} 
+Конечно-разностный аналог, аппроксимирующий задачу (\ref{51_1}):
+\begin{equation*}
+	\begin{cases}
+		\frac{u_{km}^{n+1}-u^n_{km}}{\tau}-\frac{u^{n+1}_{k+1,m}-2u_{km}^{n+1}+u_{k-1,m}^{n+1}}{h^2_x}-\frac{u^n_{k,m+1}-2u^n_{k,m}+u^n_{k,m-1}}{h^2_y} = 0\\
+		n = \overline{0,N-1}, k,m\in Z\\
+		u^0_{km} = \mu_{km}
+	\end{cases}
+\end{equation*}
+Применим спектральный признак:
+\begin{gather*}
+	u^n_{km} = e^{ik\alpha}\cdot e^{im\beta},\;\;\;\alpha,\beta\in[0;2\pi]\\
+	u_{km}^{n+1} = \lambda u^n_{km}\\
+	\frac{(\lambda-1)e^{ik\alpha}\cdot e^{im\beta}}{\tau}-\frac{\lambda}{h_x}\left(e^{i\alpha}-2+e^{-i\alpha}\right)e^{ik\alpha}e^{im\beta}-\frac{e^{i\beta-2+e^{-i\beta}}}{h^2_y}e^{ik\alpha}e^{im\beta} = 0
+\end{gather*}
+Делим обе части уравнения на $e^{ik\alpha}e^{im\beta}$ и учитываем, что $e^{i\alpha}-2+e^{-i\alpha} = -4\sin^2\frac{\alpha}{2}$:
+\begin{gather}
+	\label{51_2}
+	\lambda-1+4\varkappa_x\lambda \sin^2\frac{\alpha}{2}+4\varkappa_y\sin^2\frac{\beta}{2} = 0
+\end{gather}
+где $\varkappa_x = \frac{\tau}{h^2_x},\;\;\varkappa_y = \frac{\tau}{h^2_y}$ - числа Куррента.
 
+Из (\ref{51_2}) выражаем $\lambda$:
+\begin{gather*}
+	\lambda = \frac{1-4\varkappa_y\sin^2\frac{\beta}{2}}{1+4\varkappa_x\sin^2\frac{\alpha}{2}}
+\end{gather*}
+Для того, чтобы $|\lambda| \leq 1$ необходимо, чтобы:
+\begin{gather*}
+	\left|1-4\varkappa_y\sin^2\frac{\beta}{2}\right|\leq 1 \Rightarrow 0\leq \varkappa_y \sin^2\frac{\beta}{2} \leq \frac{1}{2} \Rightarrow \varkappa_y \leq \frac{1}{2} \Rightarrow \frac{2\tau}{h^2_y} \leq 1
+\end{gather*}
 
 \end{document}
