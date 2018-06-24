@@ -3,5 +3,20 @@
 \begin{document}
 \section{Метод установления для численного решения задачи Дирихле с криволинейной односвязной областью}
 
-
+Рассмотрим задачу:
+\begin{equation}
+\label{54_1}
+\begin{cases}
+\frac{\partial u}{\partial t}-\frac{\partial^2 u}{\partial x^2}-\frac{\partial^2 u}{\partial y^2} = -f(x,y),\;\;\;(x,y)\in G, t\in (0,+\infty)\\
+u(t,x,y)|_\Gamma = g(x,y), \;\;(x,y)\in \Gamma
+\end{cases}
+\end{equation}
+Конечно-разностный аналог для задачи (\ref{54_1}) будет выглядеть следующим образом:
+\begin{gather*}
+	\frac{u^{n+1}_{nm}}{h^2/4}-\frac{u^n_{k-1,m}-2u^n_{km}+u^n_{k+1,m}}{h^2}-\frac{u^n_{k,m-1}-2u^n_{km}+u^n_{k,m+1}}{h^2} = -f_{km}
+\end{gather*}
+Далее используется итерационный процесс:
+\begin{gather*}
+	u^{n+1}_{km}=\frac{1}{4}\left(u^n_{k-1,m}+u^n_{k+1,m}+u^n_{k,m-1}+u^n_{k,m+1}-h^2f_{km}\right)
+\end{gather*}
 \end{document}
