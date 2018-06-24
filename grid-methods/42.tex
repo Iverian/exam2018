@@ -79,13 +79,13 @@ U(a,t) = \beta_1(x), \ U(b,t) = \beta_2(x)
 Для явного разностного аналога при $n \in \textbf{<0;N-2>}$ из задачи (6) получаем 
 
 \begin{equation} \label{42.7}
-\frac{U^{n+1}_k - U^{n}_k}{\tau_n} - (1 + (u^n_k)^2)\frac{U^{n}_{k-1} - 2U^{n}_k + U^n_{k+1}}{h^2} = 0,
+\frac{U^{n+1}_k - U^{n}_k}{\tau_n} - (1 + (U^n_k)^2)\frac{U^{n}_{k-1} - 2U^{n}_k + U^n_{k+1}}{h^2} = 0,
 \end{equation} 
 
 Введем обозначение:
  \begin{equation} \label{42.8}
  \begin{cases}
- a^n_k = 1 + (u^n_k)^2, \\
+ a^n_k = 1 + (U^n_k)^2, \\
  \text{\ae} = \frac{\tau_n}{h^2_k}
  \end{cases}
  \end{equation} 
@@ -101,14 +101,14 @@ U^{n+1}_k = a^n_k \cdot \text{\ae}_n \cdot U^n_{k-1} + (1 - 2a^n_m \text{\ae})U^
  \begin{equation} \label{42.10}
  \begin{cases}
   2a^n_k \cdot \frac{\tau_n}{h^2_k} \leq 1, k = \overline{1,K-1}, \Rightarrow \\
-  2max \{((1 + a^n_k)^2:  k = \overline{0,K})\} \cdot \frac{2\tau_n}{h^2} < 1.
+  2max \{((1 + U^n_k)^2:  k = \overline{0,K})\} \cdot \frac{2\tau_n}{h^2} < 1.
   \end{cases}
  \end{equation} 
  
  Следовательно:
  
  \begin{equation} \label{42.11}
- \tau_n \leq \frac{h^2}{2max \{(1 + a^n_k)^2:  k = \overline{0,K}\}}
+ \tau_n \leq \frac{h^2}{2max \{(1 + U^n_k)^2:  k = \overline{0,K}\}}
  \end{equation} 
  
  где $U^n_0, U^n_1 ... U^n_k$ - найдены для слоя n, $n = \overline{0,N-2}$
