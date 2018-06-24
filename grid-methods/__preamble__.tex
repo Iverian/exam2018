@@ -10,14 +10,16 @@
 \usepackage{polyglossia}
 \usepackage{graphicx}
 \usepackage{subfiles}
+\usepackage{hyperref}
 
 \usepackage{amsmath,
             amsthm,
             unicode-math,
             tensor,
             algorithm,
-            hyperref
 }
+
+\linespread{1.3}
 
 \setmainlanguage{russian}
 \setotherlanguage{english}
@@ -39,6 +41,11 @@
   \renewcommand{\tablename}{Табл.}
   \renewcommand{\proofname}{Док-во}
 }
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\numberwithin{listing}{section}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Опр.}[section]
