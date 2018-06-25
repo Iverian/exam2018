@@ -4,6 +4,43 @@
 
 \section{Аппроксимация 2-го порядка граничных условий 2-го рода краевой задачи для общего одномерного стационарного уравнения теплопроводности (без "конвекции)}
 
+Рассмотрим краевую задачу:
+\begin{gather}
+	\begin{cases}
+	-\frac{d}{d\tau}\left(k(\tau)\frac{dU}{d\tau}\right)+
+	q(\tau)U(\tau)=f(\tau),\; \tau\in(a,b);\\
+	-k(a)U\prime(a)=W_a;\; U(b)=U_b
+	\end{cases}
+	\label{sys}
+\end{gather}
+где $q(\tau)$ - теплоотдача в т. $\tau$ стержня $[a,b]$ и $W(\tau)=-k(\tau)U\prime(\tau)$ - плотность тепла в т. $\tau\in[a,b].$
 
+В задаче \ref{sys} левое краевое условие - 2-го рода, правое - 1-го рода. Приведём метод аппроксимирования левого условия со 2-м порядком аппроксимирования.
+
+Для правой разностной производной имеем:
+\begin{gather}
+	\frac{U(a+h)-U(a)}{h}=U\prime(a)+U\prime\prime(a)\frac{h}{2}+U'''(a+\Theta h)\frac{h^2}{6},\; 0<\Theta<1
+	\label{prp}
+\end{gather}
+Уравнение из \ref{sys} представляем в виде:
+\begin{gather*}
+	f(\tau)=q(\tau)U(\tau)-k(\tau)U''-k'(\tau)U'(\tau)=
+	q(\tau)U(\tau)-\left(k(\tau)U'(\tau)\right)'=
+	q(\tau)U(\tau)+W'(\tau)
+\end{gather*}
+Тогда при $\tau=a:$
+\begin{gather}
+	-k(a)U''(a)=k'(a)U'(a)-q(a)U(a)+f(a)
+	\label{ta}
+\end{gather}
+Используя \ref{prp} и \ref{ta} получаем:
+\begin{gather*}
+	-k(a)\frac{U(a+h)-U(a)}{h}=-k(a)U'(a)+\frac{h}{2}\left[\frac{k'(a)}{k(a)}\cdot k(a)U'(a)-q(a)U(a)+f(a)\right]+O(h^2)\Leftrightarrow\\
+	-k_0\frac{U_1-U_0}{h}=W_a+\frac{h}{2}\left[-\frac{k'(a)}{k_0}W_a-q_0U_0+f_0\right]+O(h^2),\;h\rightarrow0
+\end{gather*}
+Таким образом, левое краевое условие 2-го порядка аппроксимирования перед вами:
+\begin{gather*}
+	-k_0\frac{U_1-U_0}{h}+\frac{q_0h}{2}U_0=W_a+\frac{h}{2}\left[-\frac{k'(a)}{k_0}W_a+f_0\right]
+\end{gather*}
 
 \end{document}

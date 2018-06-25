@@ -4,6 +4,86 @@
 
 \section{Матрица Бутчера и общий вид методов Рунге Кутта}
 
+Рассомтрим задачу Коши:
+\begin{gather}
+	\begin{cases}
+		\frac{dy}{d\tau}=f(\tau,y),\; \tau\in(0,t)\\
+		y(0)=y_0
+	\end{cases}
+	\label{K}
+\end{gather}
+где $f$ - достаточно гладкая функция, т.е. решение \ref{K} существует, единственно и достаточно гладкое.
 
+Для этого введём схему равномерных сеток $A_{(.)}=(A_k)_\mathbb{N}$, где $A_n=<0=\tau_0,\tau_1,\dots,\tau_k=t>$ - равномерная сетка с шагом $h=t/k.$ На отрезке $[\tau_0{i-1},\tau_i]$ уравнение из \ref{K} равносильно ур-ю:
+\begin{gather}
+	y_i=y_{i-1}+\int\limits_{\tau_{i-1}}^{\tau_i}f(\tau,y(\tau))d\tau,
+	\label{rv}
+\end{gather}
+где $\;^>y=[y_0,y_1,\dots,y_k>=\hat A_k(y).$
 
+Поскольку $\tau_i=\tau_{i-1}+h$, то, используя квадратурную формулу трапеций, получаем из \ref{rv} приближенное равенство:
+\begin{gather}
+	y_i=y_{i-1}+\frac{h}{2}\cdot\left(f(\tau_{i-1},y_{i-1})+f(\tau_{i},y_{i})\right)+O(h^3),\; h\rightarrow0
+	\label{sh}
+\end{gather}
+Используем метод Эйлера для значения $f(\tau_i,y_i):$
+\begin{gather}
+	f(\tau_i,y(\tau_i))\approx f(\tau_{i-1}+h,y_{i-1}+hf(\tau_{i-1},y_{i-1}))
+	\label{E}
+\end{gather}
+
+Из \ref{sh} и \ref{E} для метода Рунге-Кутта 2-го порядка (Эйлера-Коши) получаем рабочую формулу:
+\begin{gather}
+	y(\tau+h)=y(\tau)+h\left[\frac{1}{2}f(\tau,y(\tau))+\frac{1}{2}f(\tau+h,y(\tau))+hf(\tau,y(\tau))\right]+O(h^3),\; h\rightarrow0
+	\label{rk}
+\end{gather}
+
+Введём обозначения:
+\begin{gather}
+	\begin{cases}
+	\;^>j=<j_1,j_2]=<1/2,1/2]\\
+	y=y(\tau)\\
+	\omega_1=\omega_1(\tau,y,h)=f(\tau,y)\\
+	\omega_2=\omega_2(\tau,y,h)=f(\tau+h,y+hf(\tau,y))\\
+	\;^>\omega=[\omega_1,\omega_2>
+	\end{cases}
+	\label{o}
+\end{gather}
+Тогда формулу \ref{rk}, согласно обозначениям \ref{o}, можно получить:
+\begin{gather}
+	y(\tau)+h=y+\frac{h}{2}(\omega_1+\omega_2)+O(h^3),\; h\rightarrow0
+	\label{rf}
+\end{gather}
+Рабочая формула \ref{rf} индуцирует конечно-разностную схему (схему табличных аналогов \ref{K}), аппроксимирующую \ref{K} со 2-ым порядком аппроксимирования:
+\begin{gather*}
+	\begin{cases}
+	U_0=y_0\\
+	U_1=y_0+h\cdot\;^<j\cdot\;^>\omega(\tau_0,y_0,h).
+	\end{cases}
+\end{gather*}
+
+Для метода Рунге-Кутта порядка $m\in\mathbb{N}$ подбираетя рабочая формула:
+\begin{gather*}
+	y(\tau+h)=y+h\cdot\;^<j\cdot\;^>\omega(\tau_0,y_0,h)+O(h^{m+1}),\; h\rightarrow0
+\end{gather*}
+где
+\begin{gather*}
+	\begin{cases}
+		\;^>j=<j_1,j_2,\cdots,j_m]\in\;^>\mathbb{R}^{m+1}:\sum\limits_{i=1}^m j_i=1\\
+		y=y(\tau)\\
+		\omega_1=\omega_1(\tau,y,h)=f(\tau,y)\\
+		\cdots\\
+		\omega_m=f(\tau+\alpha_mh,y+h\sum\limits_{j=1}^{m-1}\beta_m^j\omega_j)
+	\end{cases}
+\end{gather*}
+где коэффициенты заданы в матрице Бутчера этого метода Рунге-Кутта порядка $m:$
+\begin{gather*}
+	B=
+	\begin{pmatrix}
+	j_1 & \alpha_2 & \alpha_3 & \cdots & \alpha_m \\
+	j_2 & \beta_2^1 & 0 & \cdots & 0 \\
+	\vdots & \beta_3^1 & \beta_3^2 & 0\cdots & 0 \\
+	j_m & \beta_m^1 & \beta_m^2 & \cdots & \beta_m^{m-1}
+	\end{pmatrix}
+\end{gather*}
 \end{document}
