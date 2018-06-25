@@ -8,25 +8,25 @@
 \begin{gather}
 	\begin{cases}
 		\frac{dy}{d\tau}=f(\tau,y),\; \tau\in(0,t)\\
-		y(0)=y_0
+		y(0)=y_0\\
 	\end{cases}
 	\label{K}
 \end{gather}
 где $f$ - достаточно гладкая функция, т.е. решение \ref{K} существует, единственно и достаточно гладкое.
 
-Для этого введём схему равномерных сеток $A_{(.)}=(A_k)_\mathbb{N}$, где $A_n=<0=\tau_0,\tau_1,\dots,\tau_k=t>$ - равномерная сетка с шагом $h=t/k.$ На отрезке $[\tau_0{i-1},\tau_i]$ уравнение из \ref{K} равносильно ур-ю:
+Для этого введём схему равномерных сеток $A_{({.})} = (A_{k})_{\mathbb{N}}$, где $A_n=\left< 0=\tau_0,\tau_1,\dots,\tau_k=t \right>$ - равномерная сетка с шагом $h=t/k$. На отрезке $[\tau_{i-1},\tau_i]$ уравнение из \ref{K} равносильно ур-ю:
 \begin{gather}
 	y_i=y_{i-1}+\int\limits_{\tau_{i-1}}^{\tau_i}f(\tau,y(\tau))d\tau,
 	\label{rv}
 \end{gather}
-где $\;^>y=[y_0,y_1,\dots,y_k>=\hat A_k(y).$
+где $\;^>y=\left[y_0,y_1,\dots,y_k\right> = \hat A_k(y)$.
 
 Поскольку $\tau_i=\tau_{i-1}+h$, то, используя квадратурную формулу трапеций, получаем из \ref{rv} приближенное равенство:
 \begin{gather}
 	y_i=y_{i-1}+\frac{h}{2}\cdot\left(f(\tau_{i-1},y_{i-1})+f(\tau_{i},y_{i})\right)+O(h^3),\; h\rightarrow0
 	\label{sh}
 \end{gather}
-Используем метод Эйлера для значения $f(\tau_i,y_i):$
+Используем метод Эйлера для значения $f(\tau_i,y_i)$:
 \begin{gather}
 	f(\tau_i,y(\tau_i))\approx f(\tau_{i-1}+h,y_{i-1}+hf(\tau_{i-1},y_{i-1}))
 	\label{E}
@@ -86,4 +86,5 @@
 	j_m & \beta_m^1 & \beta_m^2 & \cdots & \beta_m^{m-1}
 	\end{pmatrix}
 \end{gather*}
+
 \end{document}
