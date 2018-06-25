@@ -16,3 +16,5 @@ pdf/
 
 *.out
 grid-methods/16.synctex(busy)
+grid-methods/__main__.synctex(busy)
+grid-methods/__main__.toc
