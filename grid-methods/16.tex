@@ -4,8 +4,6 @@
 
 \section{Теоремы сравнения для сеточных функций сравнения, необходимые для доказательства устойчивости конечно-разностной схемы, аппроксимирующей одномерную краевую задачу (граничные условия 1-го рода) для стационарного уравнения теплопроводности с постоянным коэффициентом теплопроводности, неотрицательной теплоотдачей (без "конвекции")}
 
-Есть обращения к билету 12 и 15.
-
 \paragraph{Предисловие}
 
 Рассмотрим краевую задачу:
@@ -52,7 +50,7 @@ F_{\left(k\right)} \cdot {}^> x_{\left(k\right)} = {}^> y_{\left(k\right)}.
 
 \paragraph{Доказательство}
 
-Рассмотрим сеточную функцию ${}^> z_{\left(k\right)} = - {}^> \nu_{\left(k\right)} - {}^> y_{\left(k\right)}$. Тогда, согласно \ref{16.4}: $- {}^>\nu_{\left(k\right)} - {}^> y_{\left(k\right)}\leq O_{\left(k+1\right)}$. 
+Рассмотрим сеточную функцию ${}^> z_{\left(k\right)} = - {}^> \nu_{\left(k\right)} - {}^> y_{\left(k\right)}$. Тогда, согласно \ref{16.4}: $- {}^>\nu_{\left(k\right)} - {}^> y_{\left(k\right)}\leq {}^> O_{\left(k+1\right)}$. 
 
 Следовательно, из принципа макисмума получаем:
 
@@ -119,7 +117,7 @@ $$
 \left|U_i\right| \leq M = max \{ \left|U_a\right|, \left|U_b\right| \}, \ i = \overline{0,k}
 $$
 
-то есть $\| {}^> U_{\left(k\right)} \| \leq max \{ \left|U_a\right|, \left|U_b\right| \}$. $\ \ \# $]
+то есть $\| {}^> U_{\left(k\right)} \| \leq max \{ \left|U_a\right|, \left|U_b\right| \}$. $\ \ \# $
 
 \paragraph{Лемма 2}
 
@@ -150,7 +148,19 @@ F_{\left(k\right)} \cdot {}^>U_{\left(k\right)} = \left(
 
 Рассмотрим функцию: $x\left(\tau\right) = \frac{C}{2} \left(\tau - a\right) \left(\tau - b\right), \ \tau \in [a;b]$.
 
-Очевидно, что $x\geq 0$ на $[a;b]$ и, если ${}^> x_{\left(k\right)} = [ x_0 = 0, x_1, ..., x_{k-1}, x_k = 0 \rangle = \hat{A}_k \left(x\right)$, то, по аналогии с \ref{12-2} из вопроса №12, получаем:
+Очевидно, что $x\geq 0$ на $[a;b]$ и, если ${}^> x_{\left(k\right)} = [ x_0 = 0, x_1, ..., x_{k-1}, x_k = 0 \rangle = \hat{A}_k \left(x\right)$, то, по аналогии с конечно-разностной схемой численного решения одномерной краевой задачи для одномерного стационарного уравнения теплопроводности или
+
+\begin{gather}
+	\begin{cases}
+		u_0 = u_a;\\
+		-\frac{u_{i+1}-2u_i+u_{i+1}}{h^2} + q_iu_i = f_i, & i=\overline{1,k-1};\\
+		u_k=u_b,
+	\end{cases}
+\end{gather}	
+где $\;^>u_{(k)} = [u_0,u_1,...,u_k\rangle, \hat{A}_k(q) = [q_0,q_1,...,q_k\rangle,\\
+\hat{A}_k(f) = [f_1, f_2,...,f_{k-1}\rangle \in \;^>\underline{\mathbb{R}}^{|A_k|}(A_k)$
+
+получаем:
 
 $$
 \begin{cases}

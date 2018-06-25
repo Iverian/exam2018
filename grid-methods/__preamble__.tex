@@ -11,14 +11,17 @@
 \usepackage{graphicx}
 \usepackage{subfiles}
 \usepackage{cancel}
+\usepackage{hyperref}
+
 
 \usepackage{amsmath,
             amsthm,
             unicode-math,
             tensor,
             algorithm,
-            hyperref
 }
+
+\linespread{1.3}
 
 \setmainlanguage{russian}
 \setotherlanguage{english}
@@ -40,6 +43,17 @@
   \renewcommand{\tablename}{Табл.}
   \renewcommand{\proofname}{Док-во}
 }
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Опр.}[section]
+\theoremstyle{remark}
+\newtheorem{statement}{Утв.}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{Теор.}[section]
 
 \graphicspath{{./img/}}
 \everymath{\displaystyle}

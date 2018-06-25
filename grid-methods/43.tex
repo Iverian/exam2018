@@ -4,6 +4,59 @@
 
 \section{Единственность решения СЛАУ с трёхдиагональной матрицей, удовлетворяющей условию квази-диагонального преобладания}
 
+\begin{definition}[условие квази-диагонального преобладания]
+Если трехдиагональная матрица
+$$
+G_{(k)} = 
+\left(
+\begin{array}{cccccc}
+B_0 & C_0 & 0 & 0 & \cdots & 0 \\
+A_1 & B_1 & C_1 & 0 & \cdots & 0 \\
+0 & A_2 & B_2 & C_2 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \ddots & \ddots & \vdots \\
+0 & 0 & 0 & A_{k-1} & B_{k-1} & C_{k-1} \\
+0 & 0 & 0 & 0 & A_{k} & B_{k} \\
+\end{array}
+\right)\in\mathrm{L}(\mathbb{R},k+1)
+$$
+удовлетворяет условиям $\forall j\in\overline{0,k}\colon |B_j|\ge|C_j|\wedge|B_j|\ge|A_j|+|C_j|>|A_j|$, то говорят, что $G_{(k)}$ имеет квази-диагональное преобладание.
+\end{definition}
 
+\begin{theorem}
+СЛАУ $G_{(k)}\cdot\symbf{u}_{(k)} = \symbf{0}$, где $G_{(k)}$ -- трехдиагональная с квази-диагональным преобладанием невырождена, имеет единственное решение.
+\label{nonvirozd}
+\end{theorem}
+\begin{proof}
+Для решения заданной СЛАУ используем метод прогонки:
+$$
+\left\{
+\begin{gathered}
+u_{j} = L_{j}u_{j+1}+M_{j}\hfill\\
+u_{k} = M_{k}\hfill\\
+\end{gathered}
+\right.
+\Longleftrightarrow
+\left\{
+\begin{gathered}
+L_{0} = - \frac{C_0}{B_0}, \quad M_{0}=0
+\hfill\\
+L_{j} = \frac{C_j}{L_{j-1}A_j + B_j}
+, \quad
+M_j = -\frac{M_{j-1}A_j}{L_{j-1}A_j + B_j}
+, \quad
+\forall j\in\overline{1,k}
+\hfill\\
+M_{k}=-\frac{M_{k-1}A_k}{L_{k-1}A_k + B_k}
+\hfill\\
+\end{gathered}
+\right.,
+$$
+покажем, что $\forall i\in\overline{0,k-1}\colon|L_i|\le 1$. Поскольку $|B_0|\ge|C_0|$, то $|L_0|=\frac{|C_0|}{|B_0|}\le 1$. Теперь положим $|L_{j-1}|\le 1$, покажем что $|L_j|\le 1$, где
+$|L_j| = \frac{|C_j|}{|L_{j-1}A_j + B_j|}$ и $|L_{j-1}A_j + B_j| > |B_j| - |L_{j-1}||A_j| \ge \Big\lvzigzag |L_{j-1}| \le 1 \Big\rvzigzag \ge |B_j| - |A_j|\ge |C_j|$ в силу квази-диагонального преобладания $G_{(k)}$.
+
+Следовательно $|L_{j}| = \frac{|C_j|}{|L_{j-1}A_j + B_j|}\le 1$ и $|L_{j_1}A_j+B_j|\ge |C_j|>0 \quad \lvzigzag |A_j|+|C_j|>|A_j| \rvzigzag$.
+
+Таким образом по свойствам метода прогонки исходная СЛАУ имеет единственное решение.
+\end{proof}
 
 \end{document}
