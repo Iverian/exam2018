@@ -4,6 +4,29 @@
 
 \section{Спектральный признак устойчивости разностной схемы Лакса-Вендрофа для численного решения одномерного уравнения переноса}
 
+\begin{gather*}
+	\begin{cases}
+	\frac{\partial U}{\partial t}+a\frac{\partial U}{\partial x}=0;\; (x,t)\in\mathbb{R}\times(0,T]\\
+	U(x,0)=\mu(x)
+	\end{cases}
+\end{gather*}
 
+Сетка $C=A\times B=<x_k,t^n=(kh,\tau n):k\in\mathbb{Z}>.$
+
+Эта схема использует предикатор $\tilde{U}_k=U_k^n-\frac{\tau a}{h}(U_{k+1}^n-U_k^n)$ и корректор $U_k^{n+1}=\frac{1}{2}(U_k^n+\tilde{U}_k)-\frac{\tau a}{2h}(\tilde{U}_k-\tilde{U}_{k-1})$, поэтому в итоге получается:
+\begin{gather*}
+\frac{U_k^{n+1}-U_k^n}{\tau}+a\frac{U_{k+1}^n-U_{k-1}^n}{2h}-\frac{a^2\tau}{2}\frac{U_{k-1}^n-2U_k^n+U_{k+1}^n}{h^2}=0
+\end{gather*}
+
+Порядок аппроксимирования БЕЗ ВЫВОДА $O(\tau^2)+O(h^2);\;\tau,h\rightarrow0$
+
+Признак устойчивости:
+\begin{gather*}
+	U_k^n=e^{i\alpha k},\;U_k^{n+1}=\lambda e^{i\alpha k},\; \frac{\tau}{h}=\varkappa\Rightarrow\\
+	\lambda-1+\frac{a\varkappa}{2}(e^{i\alpha}-e^{-i\alpha})-\frac{a^2\varkappa^2}{2}(e^{-i\alpha}-2+e^{i\alpha})=0\Rightarrow\\
+	\lambda=1-ia\varkappa\sin\alpha-a^2\varkappaa^22\sin^2\frac{\alpha}{2}\Rightarrow\\
+	|\lambda|^2=1+4a^2\varkappa^2\sin^4\frac{\alpha}{2}(a^2\varkappa^2-1)\le 1\\
+	a^2\varkappa^2-1\le 0\Leftrightarrow \frac{a^2\tau^2}{h^2}\le 1
+\end{gather*}
 
 \end{document}
