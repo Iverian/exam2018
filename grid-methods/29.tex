@@ -4,6 +4,33 @@
 
 \section{Спектральный признак устойчивости в явной разностной схеме для одномерного параболического уравнения}
 
-
-
+Рассмотрим задачу Коши:
+\begin{equation}
+	\begin{cases}
+	\frac{\partial u}{\partial t} - D \frac{\partial^2 u}{\partial x^2} = 0; \; t \in (0;T], \; x \in \mathbb{R}_1;\\
+	u(0, x) = \mu(x)
+	\end{cases}
+	\label{29-1}
+\end{equation}
+Конечно-разностная схема для задачи $\ref{29-1}$:
+\begin{equation*}
+	\begin{cases}
+	u^0_m = \mu_m;\\
+	\frac{u^{k+1}_m - u^k_m}{\tau} - D\frac{u^k_{m-1} - 2u^k_m + u^k_{m+1}}{h^2} = 0, \; m \in \mathbb{Z}, \; k = \overline{0, n}
+	\end{cases}
+\end{equation*}
+По спектральному признаку 
+\begin{equation*}
+	\begin{cases}
+	u^k_m = e^{i \alpha m};\\
+	u^{k+1}_m = \lambda e^{i \alpha m}
+	\end{cases}
+\end{equation*}
+Тогда
+\begin{gather*}
+\frac{\lambda e^{i \alpha m} - e^{i \alpha m}}{\tau} - D \frac{e^{i \alpha (m-1)} - 2e^{i \alpha m} + e^{i \alpha (m+1)}}{h^2} + \frac{e^{i \alpha m}}{\tau} = 0\\
+\lambda = 1 - \frac{D\tau}{h^2}(2 - (e^{i \alpha} + e^{-i \alpha}))\\
+\lambda = 1 - 2D\ae(1 - \cos{\alpha})
+\end{gather*}
+Таким образом $\forall \alpha \; |\lambda| \le 1$
 \end{document}
