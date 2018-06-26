@@ -33,7 +33,7 @@ $$f''(\tau_i) = \frac{y_{i+1} - 2y_i + y_1}{h^2} = \frac{\Delta^2 y_i}{h^2}, i =
 \item[3)] $f(\tau_0, \tau_1, \text{...}, \tau_k) = \frac{f(\tau_1, \tau_2, \text{...}, \tau_k) - f(\tau_0, \tau_1, \text{...}, \tau_{k-1})}{\tau_k - \tau_0}$ - разделенная разность $k$-го порядка.
 
 \textbf{Лемма} (о независимости разделенной разности от порядка переменных в ее аргументе)\\
-Пусть $A = <\tau_0, \tau_1, \text{...}, \tau_k>$ - квази-сетка на $[a;b]$. Тогда:
+Пусть $A = \left<\tau_0, \tau_1, \text{...}, \tau_k\right>$ - квази-сетка на $[a;b]$. Тогда:
 
 $$f(\tau_0, \tau_1, \text{...}, \tau_k) = \sum_{i = 0}^k \frac{f(\tau_i)}{(\tau_i - \tau_0) \cdot \text{...} \cdot (\tau_i - \tau_{i - 1}) \cdot (\tau_i - \tau_{i+1}) \cdot \text{...} \cdot (\tau_i - \tau_k)}$$
  
