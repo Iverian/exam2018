@@ -12,7 +12,7 @@ $\Delta y_0 = y_1 - y_0$, $\Delta y_1 = y_2 - y_1$, ..., $\Delta y_{k-1} = y_{k}
 
 $\Delta^2 y_0 = \Delta y_1 - \Delta y_0 = y_2 - 2y_1 + y_0$, ..., $\Delta y_{k-1} = \Delta y_{k} - \Delta y_{k-1} = y_k - 2y_{k-1} + y_{k-2}$ - разности 2-го порядка\\
 
-$\Delta^k = \Delta^{k-1} y_1 - \Delta^{k-1} y_0 = \sum_{i=0}^k (-1)^i e_k^i y_{k-i}$ - разность $k$-го порядка.\\
+$\Delta^k = \Delta^{k-1} y_1 - \Delta^{k-1} y_0 = \sum_{i=0}^k (-1)^i C_k^i y_{k-i}$ - разность $k$-го порядка.\\
 
 Например:
 
@@ -28,7 +28,7 @@ $$f''(\tau_i) = \frac{y_{i+1} - 2y_i + y_1}{h^2} = \frac{\Delta^2 y_i}{h^2}, i =
 \begin{itemize}
 \item[0)] $f(\tau_0)$ - разделенная разность 0-го порядка.
 \item[1)] $f(\tau_0, \tau_1) = \frac{f(\tau_1) - f(\tau_0)}{\tau_1 - \tau_0}$ - разделенная разность 1-го порядка.
-\item[2)] $f(\tau_0, \tau_1, \tau_2) = \frac{f(\tau_1, \tau_2) - f(\tau_0, tau_1)}{tau_2 - tau_0}$ - разделенная разность 2-го порядка
+\item[2)] $f(\tau_0, \tau_1, \tau_2) = \frac{f(\tau_1, \tau_2) - f(\tau_0, \tau_1)}{\tau_2 - \tau_0}$ - разделенная разность 2-го порядка
 \item[...]
 \item[3)] $f(\tau_0, \tau_1, \text{...}, \tau_k) = \frac{f(\tau_1, \tau_2, \text{...}, \tau_k) - f(\tau_0, \tau_1, \text{...}, \tau_{k-1})}{\tau_k - \tau_0}$ - разделенная разность $k$-го порядка.
 
