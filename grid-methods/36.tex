@@ -4,6 +4,40 @@
 
 \section{Спектральный признак устойчивости в явных разностных схемах (правой и левой) для одномерного уравнения переноса}
 
+Коротко и о главном.\\
+Отсюда и до * интро. Восславим Рглора, чтобы оно было нужным.\\
 
+Для дискретных функций, определенных на сетке
+$$
+m=mh;\ \ tn=n\tau
+$$
+$$u^n_m=e^{\omega\tau n+i k h m}=\lambda^n e^{i\alpha m}$$
+Где $\lambda\in[0;2\pi]$
+$$u^{n+1}_m=\lambda^{n+1} e^{i\alpha m}\Rightarrow u^{n+1}_m=\lambda u^n_m\Rightarrow u^n_m=\lambda^n u^0_m$$
+А значит
+$$max_m|u^n_m|=|\lambda|^n max_m|u^0_m|$$
+Возпользовавшись определением устойчивости получим:
+$$||u^{(h)}||_m\le C||f^{(h)}||_{f_n},\ \ c=const>0$$
+Нормы: $||u^{(h)}||_{u_i}=max_{m,n}|u^n_m|,\ \ ||f^{(h)}||_{f_n}=max|u^0_m|$
+Для устойчивости схемы необходимо, чтобы $f_n$ и для всех $|\lambda|^m\le C(n-\frac{1}{\tau})$
+$$|\lambda(\alpha)| \le 1+C_1 \tau$$
+*\\
+Уравнение переноса: 
+$$\frac{\partial u(t,x)}{\partial t}+C\frac{\partial u(t,x)}{\partial x}=f$$
+Рассмотрим две схемы разложения:\\
+
+Левая:$$\frac{u^{n+1}_m}-u^n_m{\tau}+C\frac{u^n_m-u^n_{m-1}}{h}=f^n_m$$
+Правая:$$\frac{u^{n+1}_m}-u^n_m{\tau}+C\frac{u^n_{m+1}-u^n_{m}}{h}=f^n_m$$
+Спектральный признак устойчивости:
+$$u^n_m=\lambda^n e^{im\omega}$$
+Подставим в правую схему:
+$$\frac{\lambda-1}{\tau}+C\frac{e^{i\omega h}-1}{h}=0\Rightarrow\lambda=1+\frac{C\tau}{h}-C\tau \frac{e^{ih\omega}}{2h}$$
+Так как $\omega$ - произвольна
+$$|\lambda|\le 1 \ \ \forall \omega \Leftrightarrow -1\le \frac{C\tau}{h}\le 0$$
+А значит схема устойчива при $C<0;\ \ \ \frac{|C\tau|}{h}\le 1$\\
+
+Аналогично подставим в левую схему и получим:
+$$\lambda=1+\frac{C\tau}{n}(1-e^{-i\omega h}$$
+А значит схема устойчива при $C<0;\ \ \ \frac{|C\tau|}{h}\le 1$\\
 
 \end{document}
