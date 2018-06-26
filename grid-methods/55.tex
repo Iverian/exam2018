@@ -4,6 +4,155 @@
 
 \section{Проекционно-сеточный метод (метод конечного элемента) одномерной стационарной задачи для уравнения теплопроводности}
 
+Рассмотрим стационарную краевую задачу:
 
+\begin{gather}
+\left\{
+\begin{gathered}
+-\frac{\partial}{\partial x}\left( k(x)\frac{\partial u}{\partial x} \right)+q(x)u=f(x)
+\quad
+x\in(a,b)
+\hfill\\
+u(a) = u_a\hfill\\
+u(b) = u_b\hfill\\
+\end{gathered}
+\right.,
+\label{55-1}
+\end{gather}
+
+Положим, что функции $k$, $q$ и $f$ непрерывны на $[a,b]$ и задача (\ref{55-1}) имеет единственное решение.
+
+Пусть функция $\varphi(x)$ -- непрерывная, кусочно - гладкая на $[a,b]$ и $\varphi(a)=\varphi(b)=0$, тогда
+
+\begin{gather}
+-\int\limits_{a}^{b}\frac{\partial}{\partial x}\left(k\frac{\partial u}{\partial x}\right)\varphi{dx}
+=
+-(ku^{\prime}\varphi)\Big{|}_a^b + \int\limits_{a}^{b}ku^{\prime}\varphi^{\prime}{dx}
+=
+\int\limits_a^b k(x)u^{\prime}\varphi^{\prime}{dx}
+\label{55-2}
+\end{gather}
+
+Для численного решения рассмотрим сетку $A=\langle x_0,x_1,\dots,x_k \rangle$ с шагом $h=\frac{b-a}{k}$ на $[a,b]$ и линейно независимую на $[a,b]$ систему функций $(h_0,h_1,\dots,h_k)$:
+
+\begin{flalign*}
+h_0(x)
+=&
+\begin{cases}
+\frac{1}{h}(x_1-x) & x\in[x_0,x_1]\\
+0 & x\not\in[x_0,x_1]\\
+\end{cases}
+\\
+h_1(x)
+=&
+\begin{cases}
+\frac{1}{h}(x-x_0) & x\in[x_0,x_1]\\
+\frac{1}{h}(x_2-x) & x\in[x_1,x_2]\\
+0 & x\not\in[x_0,x_2]\\
+\end{cases}
+\\
+\vdots&\\
+h_{k-1}(x)
+=&
+\begin{cases}
+\frac{1}{h}(x-x_{k-2}) & x\in[x_{k-2},x_{k-1}]\\
+\frac{1}{h}(x_k-x) & x\in[x_{k-1},x_k]\\
+0 & x\not\in[x_{k-2},x_{k}]
+\end{cases}
+\\
+h_k(x)
+=&
+\begin{cases}
+\frac{1}{h}(x-x_{k-1}) & x\in[x_{k-1},x_{k}]\\
+0 & x\not\in[x_{k-1},x_k]\\
+\end{cases}
+\end{flalign*}
+
+Подставляя в (\ref{55-2}) функции $h_{i}(x)$ получим:
+
+\begin{flalign}
+\forall i\in\overline{1,k-1}\colon
+&
+\int\limits_{a}^{b}k(x)u^{\prime}(x)h^{\prime}_i(x){dx}
++
+\int\limits_{a}^{b}q(x)u(x)h_i(x){dx}
+=
+\int\limits_{a}^{b}f(x)h_i(x){dx},
+\label{55-int}
+\end{flalign}
+
+
+решение задачи будем искать в виде
+\begin{gather}
+u(x)
+\approx
+u_{a}h_0(x) + \sum_{i=1}^{k-1}y_ih_i(x) + u_bh_k(x)
+=\sum_{i=0}^{k}y_ih_i(x),
+\label{55-3}
+\end{gather}
+
+где $\symbf{y}=\{y_1,y_2,\dots,y_{k-1}\}$ -- неизвестные коэффициенты. Тогда получим подстановкой (\ref{55-3}) в (\ref{55-int}):
+
+\begin{flalign*}
+\forall i\in\overline{1,k-1}\colon
+&
+\sum_{j=0}^{k}y_j\int\limits_{a}^{b}k(x)h^{\prime}_j(x)h^{\prime}_i(x){dx}
+=\\
+=&
+- \frac{1}{h^2}y_{i-1}\int\limits_{x_{i-1}}^{x_i}k(x){dx}
++ \frac{1}{h^2}y_{i}\int\limits_{x_{i-1}}^{x_{i+1}}k(x){dx}
+- \frac{1}{h^2}y_{i+1}\int\limits_{x_{i}}^{x_{i+1}}k(x){dx}
+\end{flalign*}
+
+Полученное выражение можно представить в виде $\Phi\cdot\symbf{y}$, где
+\begin{flalign*}
+\Phi
+=
+\frac{1}{h^2}
+\left[
+\begin{array}{ccccccc}
+\int\limits_{x_0}^{x_2}k(x)dx & -\int\limits_{x_1}^{x_2}k(x)dx & 0 & 0 & \cdots & 0 \\
+-\int\limits_{x_1}^{x_2}k(x)dx & \int\limits_{x_1}^{x_3}k(x)dx & -\int\limits_{x_2}^{x_3}k(x)dx & 0 & \cdots & 0 \\
+0 & -\int\limits_{x_2}^{x_3}k(x)dx & \int\limits_{x_2}^{x_4}k(x)dx & -\int\limits_{x_3}^{x_4}k(x)dx & \cdots & 0 \\
+\vdots & \vdots & \ddots & \ddots & \ddots & \vdots \\
+0 & 0 & \cdots & -\int\limits_{x_{k-3}}^{x_{k-2}}k(x)dx & \int\limits_{x_{k-3}}^{x_{k-1}}k(x)dx & -\int\limits_{x_{k-2}}^{x_{k-1}}k(x)dx \\
+0 & 0 & \cdots & 0 & -\int\limits_{x_{k-2}}^{x_{k-1}}k(x)dx & \int\limits_{x_{k-2}}^{x_{k}}k(x)dx
+\end{array}
+\right],
+\end{flalign*}
+
+Таким образом $\Phi$ -- симметричная трехдиагональная матрица, аналогично для второго интеграла:
+\begin{flalign*}
+\forall i\in\overline{1,k-1}\colon
+&
+\sum_{j=0}^{k}y_j\int\limits_{a}^{b}q(x)h_i(x)h_j(x){dx}
+=\\
+=&
+- \frac{1}{h^2}y_{i-1}\int\limits_{x_{i-1}}^{x_i}q(x)(x-x_{i-1})(x-x_i){dx}
++ \frac{1}{h^2}y_{i}\left(\int\limits_{x_{i-1}}^{x_i}q(x)(x-x_{i-1})^2{dx} + \int\limits_{x_{i}}^{x_{i+1}}q(x)(x-x_i)^2{dx}\right)
+-\\
+&-
+\frac{1}{h^2}y_{i+1}\int\limits_{x_i}^{x_{i+1}}q(x)(x-x_i)(x-x_{i+1}){dx},
+\end{flalign*}
+
+получим, что это выражение можно представить как $\Psi\cdot\symbf{y}$, где $\Psi$ -- трехдиагональная, а третий интеграл можно записать как вектор
+$$
+\symbf{b}
+=
+\left\{
+\begin{array}{cccc}
+\int\limits_{a}^{b}f(x)h_1(x){dx} &
+\int\limits_{a}^{b}f(x)h_2(x){dx} &
+\cdots &
+\int\limits_{a}^{b}f(x)h_{k-1}(x){dx}
+\end{array}
+\right\}
+$$
+
+т.е. вектор неизвестных коэффициентов $\symbf{y}$ находится как решение СЛАУ:
+$$
+A\cdot\symbf{y}=\symbf{b},
+$$
+где матрица $A=\Phi+\Psi$ -- трехдиагональная. Следовательно, можно решить эту СЛАУ методом прогонки и получить неизвестные коэффициенты приближенного решения (\ref{55-3}).
 
 \end{document}

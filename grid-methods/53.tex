@@ -4,6 +4,80 @@
 
 \section{Итерационный метод для численного решения конечно-разностного аналога в разностной схеме для задачи Дирихле с прямоугольной областью}
 
+Рассмотрим двумерную задачу Дирихле:
+\begin{gather*}
+\left\{
+\begin{gathered}
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial u^2}{\partial y^2} = f(x,y)
+\quad (x,y)\in\symbf{\Omega}
+\hfill\\
+\left.u(x,y)\right|_{\symbf{\partial\Omega}} = g(x,y)
+\hfill\\
+\end{gathered}
+\right.,
+\end{gather*}
+где $\symbf{\Omega}=(a,b)\times(c,d)$ -- прямоугольная область, а $\symbf{\partial\Omega}$ -- е граница. Введем на $\symbf{\Omega}$ сетку $C$ размера $n \times m$:
 
+$$
+C = A \times B = \langle \left.(x_i,y_j)\right|\forall i\in\overline{0,n-1},j\in\overline{0,m-1}\colon x_i = a + ih_x \wedge y_j = b + jh_y\rangle,
+$$
+
+где $h_x=\frac{b-a}{N-1}$ и $h_y=\frac{d-c}{M-1}$. Перейдем к конечно-разностному аналогу:
+
+\begin{gather*}
+\left\{
+\begin{gathered}
+\frac{u_{i-1 \ j} -2u_{ij}+u_{i+1 \ j}}{h_x^2} + \frac{u_{i \ j-1} - 2u_{ij} + u_{i \ j+1}}{h_y^2}
+=
+f_{ij}
+\quad
+i\in\overline{0,n-1},j\in\overline{0,m-1}
+\hfill\\
+u_{i\ 0} = g(x_i, c)
+\quad
+i\in\overline{0,n-1}
+\hfill\\
+u_{0\ j} = g(a, y_j)
+\quad
+j\in\overline{0,m-1}
+\hfill\\
+u_{i\ m-1} = g(x_i, d)
+\quad
+i\in\overline{0,n-1}
+\hfill\\
+u_{n-1\ j} = g(b, y_j)
+\quad
+j\in\overline{0,m-1}
+\hfill\\
+\end{gathered}
+\right.
+\end{gather*}
+
+Элемент $u_{ij}$ выражается из конечно-разностного уравнения:
+
+$$
+u_{ij}
+=
+\frac
+{h_y^2(u_{i-1\ j} + u_{i+1\ j}) + h_x^2(u_{i\ j-1} + u_{i\ j+1}) - h_x^2h_y^2f_{ij}}
+{2(h_x^2+h_y^2)}
+$$
+
+Итеративные методы решения такой схемы строятся на выборе начального приближения $\forall i\in\overline{1,n-2}\forall j\in\overline{1,m-2}\colon u\indices{^0_i_j}$ для внутренних точек сетки и последовательного вычисления приближений $u\indices{^k_i_j}$ по определенному правилу пока не выполняется условие останова $\left\Vert U^{(k+1)} - U^{(k)}\right\Vert < \varepsilon$.
+
+Например, \textit{метод Гаусса -- Зейделя} предлагает следующее правило:
+
+$$
+u\indices{^k_i_j}
+=
+\frac{
+h_y^2(u\indices{^k_{i-1\ }_j} + u\indices{^{k-1}_{i+1\ }_j})
++
+h_x^2(u\indices{^k_{i\ }_{j-1}} + u\indices{^{k-1}_{i\ }_{j+1}})
+-
+h_x^2h_y^2f_{ij}}{2(h_x^2+h_y^2)}
+$$
+
+Можно показать, что при $h=h_x=h_y$ этот метод равномерно сходится к решению, а погрешность имеет порядок $h^2$.
 
 \end{document}

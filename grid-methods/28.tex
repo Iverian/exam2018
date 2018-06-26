@@ -3,6 +3,67 @@
 \begin{document}
 
 \section{Операторы (двуслойные) слоистой структуры, спектральный признак устойчивости}
+\subsection*{Операторы слоистой структуры}
+Для $h \geq 0$ на числовой прямой $ \mathbb{R}_1$ рассмотрим равномерную сетку $A_h = (ih ; i \in \mathbb{Z})$, где $stp(A_h) = h$, и $\tau_i = ih$ - узел сетки $A_h$ для $i \in \mathbb{Z}$.\\
+Кроме того, рассмотрим нормированное пространство \\
+$$ V_h = \{ V_{(.)} = (V_n)_{\mathbb{Z}} : \forall  n \in \mathbb{Z} \Rightarrow V_n \in \mathbb{R} \} = (V_h ; ||\cdot||_r)$$
+где $||v_{(\cdot)}||^2 = \sum_{n \in \mathbb{Z}} |V_n|^2h^2$. \\
+$$W_h = \{ V_{(\cdot)} = (v_n \in \mathbb{R})_{\mathbb{N}} : \sum_{n \in \mathbb{Z}} |V_n|^2 \leq +\infty \} = (W_h ; h||\cdot||_e),$$ \\
+где $||V_{(\cdot)}||^2 = \sum_{n \in \mathbb{Z}} |V_n|^2h^2$. \\
+Фактически, $W_h = \mathbb{R}^{|A_h|} (A_h)$ - пространство $A_h$ - сеточных функций. \\
+
+\textbf{Определение ( оператор слоистой структуры).} \\
+
+Оператор $ R \in End(V_h)$ (эндоморфизм - линейное преобразование линейного пространства) называют оператором слоистой структуры, если для $V_{(\cdot)} \in V_h$
+образ $w_{(\cdot)} = \hat{R}(V_{(\cdot)})$ имеет вид:
+$$ w_n = \sum_{j = -p}^{p} \alpha_j v_{n+j}; \  n \in \mathbb{Z},$$
+где $p \in \mathbb{Z}_{+}$ и $\alpha_j \in \mathbb{R}$ для $ j \in \{ -p, -p+1, ..., p\}$.
+
+\subsection*{Спетральный признак устойчивости}
+Рассмотрим оператор слоистой структуры $\hat{R} \in End(V_h)$ вида:
+$$ \hat{R}(V_{(\cdot)}) = w_{(\cdot)} = \{ \sum_{j = -p}^{p} \alpha_j V_{n+j} = W_n : \ n \in \mathbb{Z}\},$$
+где $V_{(\cdot)} = (V_n \in \mathbb{R})_{\mathbb{Z}} \in V_h$.
+Для погрешности $V_{(\cdot)} = (V_n \in \mathbb{R})_{\mathbb{Z}}$ рассмотрим функцию $f \in L_2([0;2\pi],\mathbb{R})$, для которой:
+
+\begin{align*}
+\begin{cases}
+V_n = \frac{1}{2\pi}\int_{0}^{2\pi} f(\theta)e^{-in\theta}d\theta, \ n \in \mathbb{Z}; \\
+\sum_{b \in \mathbb{Z}}|V_n|^2 =  \frac{1}{2\pi}\int_{0}^{2\pi} |f(\theta)|^2 d\theta\\
+\end{cases}
+\end{align*}
+Тогда для образа $w_{(\cdot)}= \hat{R}(V_{(\cdot)})$ получаем: \\
+$$ W_n = \sum_{j = -p}^{p}\alpha_jV_{n+j} = \sum_{j = -p}^{p}\alpha_j  \frac{1}{2\pi}\int_{0}^{2\pi} f(\theta)e^{-i(n+j)\theta}d\theta $$
+В этой формуле введем обозначение: \\
+$\overline{\lambda(\theta)} = \sum_{j = -p}^{p}\alpha_je^{-ij\theta}$, $\theta \in [0;w\pi].$
+Тогда для этой формулы получим:\\
+$$W_n = \frac{1}{2\pi}\int_{0}^{2\pi} f(\theta)\overline{ \lambda(\theta) }e^{-i\theta}d\theta ,\  n \in \mathbb{Z}$$
+Следовательно:
+$$\sum_{n \in \mathbb{Z}} |w_n|^2 = \frac{1}{2\pi} \int_{0}^{2\pi} |f(\theta) \lambda(\theta)|^2d\theta =   \frac{1}{2\pi} \int_{0}^{2\pi} |f(\theta)|^2 |\lambda(\theta)|^2 d\theta$$
+где $ \lambda(\theta) = \sum_{j = -p}^{p}\alpha_je^{ij\theta}$ \\
+Далее:
+$$\sum_{n \in \mathbb{Z}} |w_n|^2 \leq   \frac{1}{2\pi} \int_{0}^{2\pi} |f(\theta)|^2\theta max\{ |\lambda(\theta)|^2  ; \theta \in [0;2\pi]\} 
+=  max\{ |\lambda(\theta)|^2  ; \theta \in [0;2\pi]\}\cdot\sum_{n \in \mathbb{Z}}|V_n|^2$$
+Обозначая:
+\begin{align*}
+\begin{cases}
+\Lambda =  max\{ |\lambda(\theta)|^2  ; \theta \in [0;2\pi]\} \\
+||w_{(\cdot)}||^2 = h^2 \sum_{n \in \mathbb{Z}}|w_n|^2, \ \ ||v_{(\cdot)}||^2 = h^2\sum_{n \in \mathbb{Z}}|v_n|^2,
+\end{cases}
+\end{align*}
+Получаем:
+$$||w_{(\cdot)}|| = ||\hat{R}(v_{(\cdot)}|| \leq \Lambda||v_{(\cdot)}||$$
+т.е. \\
+$$||\hat{R}^m(v_{(\cdot)}|| \leq \Lambda^m||v_{(\cdot)}||$$
+Следовательно, согласно этому неравенству, для устойчивости оператора слоистой структуры $\hat{R} \in End(V_h)$ требуется выполнение условия:
+$$\Lambda =  max\{ |\lambda(\theta)|^2  ; \theta \in [0;2\pi]\} \leq 1$$
+Это условие называют \underline{спектральным признаком устойчивости} для оператора слоистой структуры $\hat{R}$ вида:
+$$ \hat{R}(V_{(\cdot)}) = w_{(\cdot)} = \{ \sum_{j = -p}^{p} \alpha_j V_{n+j} = W_n : \ n \in \mathbb{Z}\},$$
+Поскольку последовательность $V_{(\cdot)} = (e^{in\theta}); n \in \mathbb{Z}) \in V_h$ для $\forall \theta \in [0;2\pi]$ \\
+является собственным вектором, отвечающим собственному значению $\lambda(\theta) = \sum_{j=-p}^{p}\alpha_je^{ij\theta}$ (т.е. $\lambda(\theta)$ 
+- спектр оператора $\hat{R}$).\\
+Действительно, если $v_{(n)} = (v_n = e^{in\theta};n \in \mathbb{Z})$, то \\
+$$w_n = (\hat{R}(v_{(\cdot)})_n = \sum_{j=-p}^{p}\alpha_je^{i(n+j)\theta}=\lambda(\theta)v_n, n \in \mathbb{Z}$$
+Спектральный признак устойчивости используется как необходимый признак устойчивости конечно-разностных схем. В этом случае граничные условия в схеме не учитываются
 
 
 
