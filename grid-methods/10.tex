@@ -4,6 +4,63 @@
 
 \section{Теорема о норме обратной матрицы к матрице, имеющей диагональное преобладание}
 
+27+ страницы Лекций Димы.\\
+
+Для матрицы $F \in \mathbb{L}(\mathbb{R};k+1)$ вида
+
+\begin{equation}
+\label{eq_11_2}
+A = \begin{pmatrix}
+b_0 & c_0 & 0 & \hdots & \hdots & \hdots & 0 \\
+a_1 & b_1 & c_1 & 0 & \hdots & \hdots & 0 \\
+0 & a_2 & b_2 & c_2 & 0 & \hdots & 0 \\
+0 & \hdots & \hdots & \hdots & \hdots & \hdots & 0 \\
+0 & \hdots & \hdots & 0 & a_{k-1} & b_{k-1} & c_{k - 1}\\
+0 & \hdots & \hdots & 0 & 0 & a_k & b_k\\ 
+\end{pmatrix}
+\end{equation}
+
+Если
+\begin{equation}
+|b_i| - |a_i| - |c_i|\ge J > 0, \text{для} i = \overline{1, k} \;\;\; (a_0 = c_k = 0)
+\end{equation}
+, то $F \in \mathbb{GL}(\mathbb{R};k+1)$ и $||F^{-1}||\le \frac{1}{J}$\\
 
 
+
+\begin{theorem}
+Пусть матрица $A \in \mathbb{L}(\mathbb{R};n)$ имеет диагональное перобладание 
+$$diag(A)=min\{|a^j_j|-\sum_{j\neq i} |a_j^i|\}>0$$
+Тогда $A \in \mathbb{GL}(\mathbb{R};n)$ и $||A^{-1}||\le \frac{1}{diag(A)}$
+\begin{proof}
+Рассмотрим совместную СЛАУ:
+$A^>x=^<b$, где $^>x\in ^>\mathbb{R}^n$- решение СЛАУ, где $||^>x||=max_i(|x^i|)$
+
+\begin{equation}
+\begin{cases}
+a_1^1x^1=b^1-\sum_{k\neq 1} a_k^1 x^k\\
+a_2^2x^2=b^2-\sum_{k\neq 2} a_k^2 x^k\\
+.\\
+.\\
+.\\
+a_n^n x^n=b^n-\sum_{k\neq n} a_k^n x^k\\
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{cases}
+|a_1^1||x^1|\le |b^1|+\sum_{k\neq 1} |a_k^1| |x^k|\\
+|a_2^2||x^2|\le |b^2|+\sum_{k\neq 2} |a_k^2| |x^k|\\
+.\\
+.\\
+.\\
+|a_n^n| |x^n|\le |b^n|+\sum_{k\neq n} |a_k^n| |x^k|\\
+\end{cases}
+\end{equation}
+В одной из строк $|x^j|=||^>x||$, а значит:
+$$(|a^j_j-\sum_{k\neq j} |a_k^j|)||^>x||\le|b^j|\le||^>b||$$
+С другой стороны $diag(A) ||^>x||\le(|a^j_j-\sum_{k\neq j} |a_k^j|)||^>x||$, а значит, в силу неотицательности диагонального преобладания, $$||^>x||\le \frac{1}{diag(A)}$$, в свою очередь стоит отметить, что $^>x=A^{-1}^<b$, из чего следует, что $$||A^{-1}||\le\frac{1}{diag(A)} $$
+чтд
+\end{proof}
+\end{theorem}
 \end{document}
