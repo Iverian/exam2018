@@ -4,6 +4,30 @@
 
 \section{Спектральный признак устойчивости в явной разностной схеме для двумерного параболического уравнения}
 
+Отсюда и до * интро. Восславим Рглора, чтобы оно было нужным.\\
 
-
+Для дискретных функций, определенных на сетке
+$$
+m=mh;\ \ tn=n\tau
+$$
+$$u^n_m=e^{\omega\tau n+i k h m}=\lambda^n e^{i\alpha m}$$
+Где $\lambda\in[0;2\pi]$
+$$u^{n+1}_m=\lambda^{n+1} e^{i\alpha m}\Rightarrow u^{n+1}_m=\lambda u^n_m\Rightarrow u^n_m=\lambda^n u^0_m$$
+А значит
+$$max_m|u^n_m|=|\lambda|^n max_m|u^0_m|$$
+Возпользовавшись определением устойчивости получим:
+$$||u^{(h)}||_m\le C||f^{(h)}||_{f_n},\ \ c=const>0$$
+Нормы: $||u^{(h)}||_{u_i}=max_{m,n}|u^n_m|,\ \ ||f^{(h)}||_{f_n}=max|u^0_m|$
+Для устойчивости схемы необходимо, чтобы $f_n$ и для всех $|\lambda|^m\le C(n-\frac{1}{\tau})$
+$$|\lambda(\alpha)| \le 1+C_1 \tau$$
+*\\
+Двумерное уравнение теплопроводности (параболическое)
+$$\frac{\partial u}{\partial t}=K\left(\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}\right)$$
+Где $K=const$\\
+Мы будем искать решение в виде:
+$$u^p_{m,n}=\lambda^p e^{i\alpha m} e^{i\beta n}$$
+Получим:$$\frac{\lambda-1}{\tau}=K(-\frac{4}{n^2}\sin^2{\frac{\alpha}{2}}-\frac{4}{n^2}\sin^2{\frac{\beta}{2}})$$
+$$\lambda=1-\frac{4K\tau}{n^2}(\sin^2{\frac{\alpha}{2}}+\sin^2{\frac{\beta}{2}})$$
+$$|\lambda|<1\Rightarrow \frac{K\tau}{n^2}<\frac{1}{4}$$
+А значит схема является устойчивой.
 \end{document}
