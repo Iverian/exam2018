@@ -4,6 +4,73 @@
 
 \section{Устойчивость конечно разностного аналога краевой задачи для одномерного стационарного уравнения теплопроводности с постоянным коэффициентом теплопроводности, корректность разностной схемы}
 
+Рассмотрим задачу $k \equiv const > 0$.
 
+\begin{equation}
+\begin{cases}
+- k U'' + q\left(x\right)U = f \left(x\right) \\
+U \left(a\right) = U_a ; \ U \left(b\right) = U_b
+\end{cases}
+\end{equation}
 
+\begin{equation}
+\begin{cases}
+L_n \left(\overline{U}^n\right) = {}^> d^n\\
+U^n_0 = U_a; \ U^n_N = U_b
+\end{cases}
+\end{equation}
+
+Справедлива оценка:
+
+$$
+\| \overline{U}^n \| \leq max \{ \left|U_a\right|, \left|U_b\right| \} + \frac{C}{8} \left|b-a\right|^2,
+$$
+
+где $C = max \{\left|f^h_n\right|:n = \overline{1,N-1}\}$.
+
+Отсюда следует разностная схема:
+
+\begin{equation}\label{46.1}
+\begin{cases}
+U^n_0 = U_a \\
+-k \frac{U^n_{n-1} - 2 U^n_n + U^n_{n+1}}{h^2} + q^n_n U^n_n = f^n_n, \ 1 \leq n \leq N \\
+U^n_N = U_b
+\end{cases}
+\end{equation}
+
+и она является устойчивой.
+
+\paragraph{Доказательство}
+$ $
+Решение $\overline{U}^n = \overline{y}^n + \overline{z}^n$, где $\overline{y}^n$ - решение СЛАУ
+
+\begin{equation}
+\begin{cases}
+L_n \left(\overline{U}^n\right) = {}^> O_{\left|A_n\right| - 2} \\
+U^n_0 = U_a, \ U^n_N = U_b
+\end{cases}
+\end{equation}
+
+и $\overline{z}^n$ - решение СЛАУ
+\begin{equation}
+\begin{cases}
+L_n \left(\overline{U}^n\right) = {}^> d^n,
+U^n_0 = 0, \ U^n_n = 0 
+\end{cases}
+\end{equation}
+
+Поэтому $\| \overline{U}^n \| \leq \| \overline{y}^n \| + \| \overline{z}^n \| \leq max \{\left|U_a\right|, \left|U_b\right|\} + \frac{\left(b-a\right)^2}{8} max \{\left|f^n_n\right|: n =\overline{1,N-1}\}$.
+
+Из таких неравенств при $h \rightarrow 0$ с конечно-разностными аналогами вида \ref{46.1} следует устойчивость схемы. $\ \ \#$
+
+\paragraph{Следствие о корректности}
+
+Разностная схема с конечно-разностным аналого вида \ref{46.1} аппроксимирует задачу
+
+\begin{equation}
+\begin{cases}
+- \frac{d}{dx} \left(K \left(x\right)\frac{dU}{dx}\right) + q \left(x\right) U = f \left(x\right), x \in \left(a;b\right) \\
+U \left(a\right) = U_a, \ U\left(b\right) = U_b
+\end{cases}
+\end{equation}
 \end{document}
